@@ -6,6 +6,7 @@ import Fish from './Fish';
 import base from '../base'
 
 import sampleFishes from '../sample-fishes'
+import PropTypes from 'prop-types'
 
 class App extends React.Component{
 
@@ -13,6 +14,10 @@ class App extends React.Component{
         fishes: {},
         order: {}
     };
+
+    static propTypes = {
+        match :PropTypes.object
+    }   
 
     componentDidMount(){
         const {params} = this.props.match;

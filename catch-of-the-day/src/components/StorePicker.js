@@ -1,16 +1,18 @@
-
 import React from 'react'
 import { getFunName } from '../helpers'
+import PropTypes from 'prop-types'
+
 
 class StorePicker extends React.Component {
     // constructor(){
-
     //     super();
-
     //     console.log("gonna create our component");
     //     this.goToStore = this.goToStore.bind(this);
-
     // }
+
+    static propTypes = {
+        hsitory: PropTypes.object,
+    };
 
     myInput = React.createRef();
     

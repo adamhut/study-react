@@ -1,8 +1,11 @@
 import React from 'react'
-import fishes from '../sample-fishes';
+// import fishes from '../sample-fishes';
 import {formatPrice} from '../helpers'
+import PropTypes from 'prop-types'
+
 
 class Fish extends React.Component{
+
 
     handleClick = ()=>{
 
@@ -29,5 +32,17 @@ class Fish extends React.Component{
         );
     }
 }
+
+Fish.propTypes = {
+    details: PropTypes.shape({
+        image :PropTypes.string,
+        name :PropTypes.string,
+        price:PropTypes.number,
+        desc:PropTypes.string,
+        status:PropTypes.string,
+    }),
+    addToOrder: PropTypes.func,
+}
+
 
 export default Fish;
