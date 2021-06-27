@@ -24,6 +24,9 @@ class EditFishForm extends React.Component{
         this.props.updateFish(this.props.index, updatedFish);
     };
 
+    handleRemove = ()=>{
+        this.props.deleteFish(this.props.index);
+    }
     render(){
         // this.nameRef = this.props.fish.name;
         // this.priceRef = this.props.fish.price;
@@ -68,7 +71,8 @@ class EditFishForm extends React.Component{
                     placeholder="Image" 
                 />
                 <button 
-                    type="submit"> Edit Fish</button>
+                    type="button" onClick={this.handleRemove}> Remove Fish
+                </button>
             </div>
         );
 

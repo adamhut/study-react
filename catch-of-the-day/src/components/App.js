@@ -66,7 +66,25 @@ class App extends React.Component{
             fishes: fishes
         });      
     };
+    deleteFish = (key)=>{
+        // 1. Take a copy of existing state
+        const fishes = { ...this.state.fishes };
+        // 2.update this state
+        fishes[key] = null;
+        // 3. update state
+        this.setState({ fishes:fishes }); 
 
+        // remove fish from oder if exist
+        this.removeFromOrder(key);
+    };
+    removeFromOrder = (key)=>{
+        const order = { ...this.state.order };
+        //2. remove that item form order
+        delete order[key] ;
+        //3. Call setState to update our state object
+        this.setState({ order:order });
+
+    };
     loadSampleFishes = ()=>{
         this.setState({ fishes : sampleFishes});
     };
@@ -99,12 +117,17 @@ class App extends React.Component{
                         }                        
                     </ul>
                 </div>
-                <Order fishes={this.state.fishes} order={this.state.order}></Order>
+                <Order 
+                    fishes={this.state.fishes} 
+                    order={this.state.order}
+                    removeFromOrder = {this.removeFromOrder}
+                ></Order>
                 <Inventory 
                     addFish={this.addFish} 
                     loadSampleFishes={this.loadSampleFishes} 
                     fishes={this.state.fishes }
                     updateFish={this.updateFish}
+                    deleteFish={this.deleteFish}
                 ></Inventory>
             </div>
         );
