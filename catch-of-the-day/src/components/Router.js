@@ -10,8 +10,6 @@ const Router = () => {
             <Switch>
                 <Route exact path="/" component={StorePicker}></Route>
                 <Route exact path="/store/:storeid" component={App}></Route>
-
-
                 <Route component={NotFound}></Route>
             </Switch>    
         </BrowserRouter>

@@ -17,12 +17,12 @@ class App extends React.Component{
 
     static propTypes = {
         match :PropTypes.object
-    }   
+    }
 
     componentDidMount(){
         const {params} = this.props.match;
         console.log(`${params.storeid}/fishes`);
-        
+
         // this sync the data from firebase
         this.ref = base.syncState(`${params.storeid}/fishes`,{
             context:this,
@@ -39,7 +39,7 @@ class App extends React.Component{
 
     componentDidUpdate(){
         localStorage.setItem(
-            `${this.props.match.params.storeid}`, 
+            `${this.props.match.params.storeid}`,
             JSON.stringify(this.state.order)
         );
     };
@@ -57,7 +57,7 @@ class App extends React.Component{
         //3. Set the new fishes object to state
         this.setState({
             fishes: fishes
-        });      
+        });
     };
     updateFish = (key,updatedFish) =>{
         //1. Take a copy of existing state
@@ -69,7 +69,7 @@ class App extends React.Component{
         //3. Set the new fishes object to state
         this.setState({
             fishes: fishes
-        });      
+        });
     };
     deleteFish = (key)=>{
         // 1. Take a copy of existing state
@@ -77,7 +77,7 @@ class App extends React.Component{
         // 2.update this state
         fishes[key] = null;
         // 3. update state
-        this.setState({ fishes:fishes }); 
+        this.setState({ fishes:fishes });
 
         // remove fish from oder if exist
         this.removeFromOrder(key);
@@ -110,27 +110,27 @@ class App extends React.Component{
                     <Header tagline="Fresh Seafood Market" age={300} cool={true}></Header>
 
                     <ul className="fishes">
-                        { 
+                        {
                             Object.keys(this.state.fishes).map(key =>{
-                                return  <Fish 
-                                    details={this.state.fishes[key]} 
-                                    key={key} 
+                                return  <Fish
+                                    details={this.state.fishes[key]}
+                                    key={key}
                                     index={key}
                                     addToOrder={this.addToOrder}
                                 ></Fish>
-                            }) 
-                        }                        
+                            })
+                        }
                     </ul>
                 </div>
-                <Order 
-                    fishes={this.state.fishes} 
+                <Order
+                    fishes={this.state.fishes}
                     order={this.state.order}
                     removeFromOrder = {this.removeFromOrder}
                 ></Order>
-                <Inventory 
-                    addFish={this.addFish} 
+                <Inventory
+                    addFish={this.addFish}
                     storeId={this.props.match.params.storeid}
-                    loadSampleFishes={this.loadSampleFishes} 
+                    loadSampleFishes={this.loadSampleFishes}
                     fishes={this.state.fishes }
                     updateFish={this.updateFish}
                     deleteFish={this.deleteFish}
